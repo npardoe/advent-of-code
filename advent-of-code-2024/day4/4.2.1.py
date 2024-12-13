@@ -1,58 +1,3 @@
-# test =  [["A1","A2","A3","A4"],
-#             ["B1","B2","B3","B4"],
-#             ["C1","C2","C3","C4"],
-#             ["D1","D2","D3","D4"],]
-
-# # Row - Column
-# test1 =  [[0,-1,-2,-3],
-#             [1, 0,-1,-2],
-#             [2, 1, 0,-1],
-#             [3, 2, 1, 0],]
-
-# # Row - Column[::-1]
-# test2 = [[-3,-2,-1, 0],
-#          [-2,-1, 0, 1],
-#          [-1, 0, 1, 2],
-#          [ 0, 1, 2, 3],]
-
-# # Row[::-1] - Column[::-1]
-# test3 = [[ 0, 1, 2, 3],
-#          [-1, 0, 1, 2],
-#          [-2,-1, 0, 1],
-#          [-3,-2,-1, 0],]
-
-# # Row[::-1] - Column
-# test4 = [[3, 2, 1, 0],
-#          [2, 1, 0,-1],
-#          [1, 0,-1,-2],
-#          [0,-1,-2,-3],]
-
-# return [
-#     # Front to Back
-#     array,
-
-#     # Back to Front
-#     [row[::-1] for row in array],
-
-#     # Top to Bottom
-#     [[row[column] for row in array] for column in range(0,len(array[0]))],
-    
-#     # Bottom to Top
-#     [[row[column] for row in array[::-1]] for column in range(0,len(array[0]))],
-
-#     # Top Left to Bottom Right
-#     self.parse_map(self.map1),
-    
-#     # Top Right to Bottom Left
-#     self.parse_map(self.map2),
-
-#     # Bottom Right to Top Left
-#     self.parse_map(self.map3),
-    
-#     # Bottom Left to Top Right
-#     self.parse_map(self.map4),
-# ]
-
 import copy
 
 def read_to_list(filepath):
@@ -114,7 +59,8 @@ class MapMaker():
     def collect_maps(self):
         array = self.array
         # Normal (Left to Right maintained)
-        maps = [array, [[row[column] for row in array] for column in range(0,len(array[0]))],]
+        # maps = [array, [[row[column] for row in array] for column in range(0,len(array[0]))],]
+        maps = []
         maps.extend(self.process_maps([self.map1, self.map4]))
         return maps
         
@@ -146,28 +92,9 @@ def solver():
         read_to_list("input.txt")
     )
     maps = maker.collect_maps()
-    return maker.search_maps(maps)
-
-# test =  [["A1","A2","A3","A4"],
-#             ["B1","B2","B3","B4"],
-#             ["C1","C2","C3","C4"],
-#             ["D1","D2","D3","D4"],]
-
-# input = """\
-# 123
-# 456
-# 789\
-# """
-# test = input.split("\n")
-# print(test)
-# maker = MapMaker(test)
-
-# mapped1 = maker.apply_map(maker.map1)
-# mapped2 = maker.apply_map(maker.map2)
-# mapped3 = maker.apply_map(maker.map3)
-# mapped4 = maker.apply_map(maker.map4)
-
-# print(maker.parse_map(mapped1))
-# print(maker.parse_map(mapped2))
-# print(maker.parse_map(mapped3))
-# print(maker.parse_map(mapped4))
+    total = 0
+    for row0 in maps[0]:
+        for row1 in maps[1]:
+            
+       
+    # return maker.search_maps(maps)
